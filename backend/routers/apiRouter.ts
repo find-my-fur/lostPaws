@@ -1,14 +1,23 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
+import { apiController } from '../controllers/apiController.ts';
 
-const apiRouter = express.Router();
+//any routes to api will be handled here
+export const apiRouter = express.Router();
 
-apiRouter.get('/', async (req: express.Request, res: express.Response) => {
-  res.status(200).json('success');
-  return
-});
+//handles retrieval of data from our API
+apiRouter.get(
+  '/',
+  apiController.getPets,
+  async (req: Request, res: Response) => {
+    res.status(200).json('success');
+  }
+);
 
-apiRouter.post('/', async (req: express.Request, res: express.Response) => {
-  res.status(200).json('success');
-});
-
-export default apiRouter;
+//handles updating any data to our database
+apiRouter.post(
+  '/',
+  apiController.updatePets,
+  async (req: Request, res: Response) => {
+    res.status(200).json('success');
+  }
+);
