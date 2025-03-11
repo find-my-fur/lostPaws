@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { authenticationController } from '../controllers/authenticationController';
+import { authenticationController } from '../controllers/authenticationController.ts';
 
 //any authentication related steps will be handled here
 export const authenticateRouter = express.Router();

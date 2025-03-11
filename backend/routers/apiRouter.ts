@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { apiController } from '../controllers/apiController';
+import { apiController } from '../controllers/apiController.ts';
 
 //any routes to api will be handled here
 export const apiRouter = express.Router();
