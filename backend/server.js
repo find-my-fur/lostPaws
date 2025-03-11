@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 
 const apiRouter = require('./routes/api.js');
-const PORT = 5173;
+const PORT = 300;
 
 /**
  * handle parsing request body
