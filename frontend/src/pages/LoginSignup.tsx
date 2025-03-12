@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const LoginSignup = () => {
   const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Signup forms
-
+ 
   return (
     <div className="flex justify-center items-center min-h-screen w-full">
 

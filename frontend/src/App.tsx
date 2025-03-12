@@ -6,6 +6,7 @@ import Preferences from "./pages/Preferences";
 import "tailwindcss";
 import Navbar from './components/Navbar';
 
+
 function App() {
   return (
     <Router>
