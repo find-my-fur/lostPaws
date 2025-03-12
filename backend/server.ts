@@ -1,6 +1,5 @@
 import express from 'express';
 import { apiRouter } from './routers/apiRouter.ts';
-
 const PORT: number = 3000;
 
 const app = express();

@@ -13,14 +13,32 @@ const Preferences = () => {
   }
 
   const submitSurvey = (formData): void => {
-    // for (const elem of input) {
-      
-    // }
+    interface Values {
+      Name: string;
+      Address: string;
+      State: string;
+      City: string;
+      Zip: number;
+      Phone: number;
+    }
 
-    fetch('');
+    const body: Values = {
 
-    const query: string = formData.get('query');
-    console.log(query)
+    }
+
+
+    for (const elem of input) {
+      body[elem] = formData.get(elem);
+    }
+
+    fetch('/api/PostPreferences', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    });
+    
     return;
   };
 
