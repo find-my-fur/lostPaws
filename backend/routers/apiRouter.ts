@@ -1,8 +1,5 @@
 import express from 'express';
-<<<<<<< HEAD
-=======
 //import { Request, Response } from 'express';
->>>>>>> database
 import { apiController } from '../controllers/apiController.ts';
 import pool from '../modal.ts';
 
