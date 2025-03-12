@@ -1,5 +1,4 @@
 import express from 'express';
-<<<<<<< HEAD
 
 import 'dotenv/config';
 
@@ -31,17 +30,6 @@ export const apiController: ApiController = {
       console.log('error:', err);
     }
 
-=======
-//import { Request, Response, Nextfunction } from 'express'
-
-interface ApiController {
-  getPets: (req: express.Request, res: express.Response, next: express.NextFunction) => void;
-  updatePets: (rreq: express.Request, res: express.Response, next: express.NextFunction) => void;
-}
-
-export const apiController: ApiController = {
-  getPets: async (req, res, next) => {
->>>>>>> database
     return next();
   },
 

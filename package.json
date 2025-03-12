@@ -4,11 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-<<<<<<< HEAD
-    "dev": "vite && ts-node ./backend/server.ts",
-=======
     "dev": "vite & nodemon ./backend/server.ts",
->>>>>>> database
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
