@@ -5,8 +5,10 @@ interface ApiController {
   updatePets: (req: Request, res: Response, next: NextFunction) => void;
 }
 
+
 export const apiController: ApiController = {
   getPets: async (req, res: Response, next) => {
+  
     return next();
   },
 
