@@ -1,5 +1,6 @@
 import express from 'express';
-import apiRouter from './routers/apiRouter.ts';
+import { apiRouter } from './routers/apiRouter.ts';
+
 const PORT: number = 3000;
 
 const app = express();
@@ -12,9 +13,11 @@ app.use(express.urlencoded({ extended: true })); //ensures that there are header
 
 app.use('/api', apiRouter); //
 
-app.use((req: express.Request, res: express.Response): void=> {
-  res.status(404).json({message: "This is not the page you're looking for..."});
-  return 
+app.use((req: express.Request, res: express.Response): void => {
+  res
+    .status(404)
+    .json({ message: "This is not the page you're looking for..." });
+  return;
 });
 
 app.use((err, req, res, next) => {

@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import { apiController } from '../controllers/apiController.ts';
 
 //any routes to api will be handled here
@@ -8,7 +8,7 @@ export const apiRouter = express.Router();
 apiRouter.get(
   '/',
   apiController.getPets,
-  async (req: Request, res: Response) => {
+  async (req: express.Request, res: express.Response) => {
     res.status(200).json('success');
   }
 );
