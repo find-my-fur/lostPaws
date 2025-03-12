@@ -1,16 +1,17 @@
-import { Request, Response, NextFunction } from 'express';
+import express from 'express';
+//import { Request, Response, Nextfunction } from 'express'
 
 interface ApiController {
-  getPets: (req: Request, res: Response, next: NextFunction) => void;
-  updatePets: (req: Request, res: Response, next: NextFunction) => void;
+  getPets: (req: express.Request, res: express.Response, next: express.NextFunction) => void;
+  updatePets: (rreq: express.Request, res: express.Response, next: express.NextFunction) => void;
 }
 
 export const apiController: ApiController = {
-  getPets: async (req, res: Response, next) => {
+  getPets: async (req, res, next) => {
     return next();
   },
 
-  updatePets: async (req: Request, res: Response, next) => {
+  updatePets: async (req, res, next) => {
     return next();
   },
 };
