@@ -56,12 +56,12 @@ apiRouter.post(
 apiRouter.post(
   '/PetPreferences',
   async (req: express.Request, res: express.Response) => {
-    console.log('in apiRouter Pet Preferences', req.body);
+    //console.log('in apiRouter Pet Preferences', req.body);
     const userId: number = 18;
     const { Breed, Age, Size, Gender } = req.body;
 
     const values: (string | number)[] = [userId, Breed, Age, Size, Gender];
-    console.log('the values:', values);
+    //console.log('the values:', values);
 
     let result = await pool.query(
       'SELECT * FROM userpreference WHERE user_id = $1',
@@ -81,6 +81,45 @@ apiRouter.post(
         values
       );
     }
+
+    res.status(200).json('success');
+  }
+);
+
+apiRouter.post(
+  '/Petfavorities',
+  async (req: express.Request, res: express.Response) => {
+    //console.log('in apiRouter Pet Favorites', req.body);
+    const userId: number = 18;
+    const { id } = req.body;
+
+    await pool.query(
+      `INSERT INTO favoritepet(user_id, pets)
+      VALUES($1, $2)`,
+      [userId, id]
+    );
+
+    res.status(200).json('success');
+  }
+);
+
+apiRouter.get(
+  '/getfavorites',apiController.favoritePets, async (req: express.Request, res: express.Response) => {
+    res.status(200).json(res.locals.animalsFetched);
+  }
+);
+
+// remove from favorites
+apiRouter.delete(
+  '/removefavorites', async (req: express.Request, res: express.Response) => {
+    const userId: number = 18;
+    const { id } = req.body;
+
+    await pool.query(
+      `DELETE FROM favoritepet WHERE pets = $1`,
+      [id]
+    );
+
 
     res.status(200).json('success');
   }
