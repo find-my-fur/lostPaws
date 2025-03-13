@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Preferences = () => {
+const PetPreferences = () => {
   const navigate = useNavigate();
 
-
-  const input: string[] = ['Name', 'Address', 'State', 'City', 'Zip', 'Phone'];
+  const input: string[] = ['Breed', 'Age', 'Size', 'Gender'];
   const inputElement: React.ReactElement[] = [];
 
   for (const elem of input) {
@@ -17,26 +16,23 @@ const Preferences = () => {
           htmlFor={elem}
         >
           Enter {elem}{' '}
-          </label>
-          <input
-            id={elem}
-            name={elem}
-            className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
-            placeholder={`Enter your ${elem}`}
-          />
-        
+        </label>
+        <input
+          id={elem}
+          name={elem}
+          className='w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500'
+          placeholder={`Enter your ${elem}`}
+        />
       </div>
     );
   }
 
   const submitSurvey = async (formData): void => {
     interface Values {
-      Name: string;
-      Address: string;
-      State: string;
-      City: string;
-      Zip: number;
-      Phone: number;
+      Breed: string;
+      Age: string;
+      Size: string;
+      Gender: string;
     }
 
     const body: Values = {};
@@ -53,9 +49,7 @@ const Preferences = () => {
       body: JSON.stringify(body),
     });
 
-
-    navigate('/PetPreferences')
-
+    navigate('/home');
 
     return;
   };
@@ -69,7 +63,12 @@ const Preferences = () => {
             className='bg-white p-6 rounded-lg shadow-lg w-96 space-y-4 flex flex-col items-center'
           >
             {inputElement}
-            <button type='submit' className="w-full bg-gray-400 text-blue-900 py-2 rounded-md hover:bg-orange-400 transition duration-300">Search</button>
+            <button
+              type='submit'
+              className='w-full bg-gray-400 text-blue-900 py-2 rounded-md hover:bg-orange-400 transition duration-300'
+            >
+              Search
+            </button>
           </form>
         </div>
       </div>
@@ -77,4 +76,4 @@ const Preferences = () => {
   );
 };
 
-export default Preferences;
+export default PetPreferences;

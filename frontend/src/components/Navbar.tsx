@@ -19,7 +19,6 @@ const Navbar = () => {
           <Link to="/" className="text-white px-4">Login/Sign</Link> 
           <Link to="/about" className="text-white px-4">About</Link>
           <Link to="/contact" className="text-white px-4">Contact</Link>
-          <Link to="/preferences" className="text-white px-4">Preferences</Link>
           <Link to="/favorites" className="text-white px-4">Favorites</Link>
         </div>
       </div>
