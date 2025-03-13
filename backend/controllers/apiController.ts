@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const URL = 'https://api.petfinder.com/v2/oauth2/token/';
+const URL = 'https://api.petfinder.com/v2/oauth2/token';
 
 //types for the controller
 interface ApiController {
@@ -59,7 +59,7 @@ export const apiController: ApiController = {
       const authorizationHeader = `Bearer ${res.locals.access_token}`;
 
       const fetchAnimalsUrl: string =
-        URL + `status=adoptable&gender=female&size=medium&limit=100`;
+        URL + `?status=adoptable&gender=female&size=medium&limit=100`;
       const response: Response = await fetch(fetchAnimalsUrl, {
         headers: {
           Authorization: authorizationHeader,
