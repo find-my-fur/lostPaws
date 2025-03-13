@@ -2,23 +2,25 @@ import React, { useEffect, useState } from 'react';
 import logo from '../assets/LostPawsLogo.png';
 
 const Home = () => {
-  const [petBubble, setPetBubble] = useState([]);
+  const [petBubble, setpetBubble] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const petsPerPage = 30;
 
   useEffect(() => {
-    const GetPet = async () => {
-      const response = await fetch('https://api.petfinder.com/v2/animals?status=adoptable&gender=female&size=medium&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ0MzNLTnBQbnNRUVllWHM5NzhyRWxpaVJ0dzVSSWxHSTlOS3NOM29SOUNOb2RwaDV2aiIsImp0aSI6IjdjNjU4MmYyZGE3ZjE5MDE1ZjgzNGUyNTQyMzgzOWIzZjAzZTUwYzg0YjE2NGM2MDdhOTQ2ZjcwNzUwNWUxMzcxNDhmZTM5NTU3NWJmMDViIiwiaWF0IjoxNzQxODc4OTU0LCJuYmYiOjE3NDE4Nzg5NTQsImV4cCI6MTc0MTg4MjU1NCwic3ViIjoiIiwic2NvcGVzIjpbXX0.LR-N4UrEMcdKDQFNrrOoIveSMAkCIIQI1X6NLKtoM-qNCovDhxDudLB8HD0QNPDxJQUPD_lhhOfas2zodA3Cbka7GioVOve5bRk8BqpW5tPx19MgKBiX6F-u61vWPKAf7Ka67G0MDyBKdNRABw7EcDTlHlsT8dyG-tpAHOUaQC-JNJH4Ed8T4p-onIG_OnstWGwT45JmCt7oq9sczFNVIi8fyJfRN3ZklK8DTebPHhUkHdoOdUdWSG3d_E4S2lZn9iPieCdrl_38Z285nhMCks49GfAwFY9Qwqe6wjWO9PQb7uz0omAoN44JiPRgNXTEzHpGsdtc5P2YUYeTsStmfA'
-        },
-      });
+    const GetPet = async (): Promise<void> => {
+      // const response = await fetch('https://api.petfinder.com/v2/animals?status=adoptable&gender=female&size=medium&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916', {
+      //   method: 'GET',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ0MzNLTnBQbnNRUVllWHM5NzhyRWxpaVJ0dzVSSWxHSTlOS3NOM29SOUNOb2RwaDV2aiIsImp0aSI6ImU5MTQ5NDhlNTljMDczNjAwOWI0NTNhMWRiOGJkZDY4ZDQ4NzA4YWE1MWNlYmIzMWVhN2EzN2E4YmE3YmVmYTFlMjExMzQyOTlhODRmMzllIiwiaWF0IjoxNzQxODc1MTkzLCJuYmYiOjE3NDE4NzUxOTMsImV4cCI6MTc0MTg3ODc5Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.HAQw5IAbj5rMI_EG-mcbgcWZwcFTc8cy1hg2Ci53vbFXTTMLinqsQ5IyykDlRY1UyGnL0FTJ30DZ2MgpTs9k_TpJ4vcvBMxjkwvCzw5KAmLZo_X4FEirmqJIaFXYRiZiexfhz8KMD8dFKK2XL0IYJ4aOU1SyObkQTkG9MXRoLx6A3Xzh4qrDf6GNbI6SyVdlxNPcsKC8Ho7QzQGI-xzIL7B0sAVpuaFXqHsbaG8VTmyHGW149zz7D641NaY-BsfFTQRkKN2vYwaJg2vmFo2bLs-2fyLhGtEI5DTzSSFzCzNvyKCkWKTaPbTwIRqFMVZrfRm4eG7wUrNNGod_Po8Lzg'
+      //   }
+      // )},
+      const response = await fetch('/api');
 
       const data = await response.json();
       const petInfo = data.animals;
-      const array = [];
+      console.log(data.animals);
+      const array: React.ReactElement[] = [];
 
       for (const elem of petInfo) {
         const { name, photos, url } = elem;
@@ -35,7 +37,8 @@ const Home = () => {
           </a>
         );
       }
-      setPetBubble(array);
+      setpetBubble(array);
+      return;
     };
 
     GetPet();

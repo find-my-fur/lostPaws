@@ -11,7 +11,7 @@ apiRouter.get(
   '/',
   apiController.getPets,
   async (req: express.Request, res: express.Response) => {
-    res.status(200).json('success');
+    res.status(200).json(res.locals.animalsFetched);
   }
 );
 
@@ -63,18 +63,23 @@ apiRouter.post(
     const values: (string | number)[] = [userId, Breed, Age, Size, Gender];
     console.log('the values:', values);
 
-    let result = await pool.query('SELECT * FROM userpreference WHERE user_id = $1', [userId])
+    let result = await pool.query(
+      'SELECT * FROM userpreference WHERE user_id = $1',
+      [userId]
+    );
 
     if (result.rows.length === 1) {
-      await pool.query(`UPDATE userpreference SET breed = $1, age = $2, size = $3, gender = $4
-                        WHERE user_id = $5`, [Breed, Age, Size, Gender, userId])
-
+      await pool.query(
+        `UPDATE userpreference SET breed = $1, age = $2, size = $3, gender = $4
+                        WHERE user_id = $5`,
+        [Breed, Age, Size, Gender, userId]
+      );
     } else {
       await pool.query(
-      `Insert into userpreference(user_id, breed, age, size, gender)
+        `Insert into userpreference(user_id, breed, age, size, gender)
                       values($1, $2, $3, $4, $5)`,
-      values
-    );
+        values
+      );
     }
 
     res.status(200).json('success');
