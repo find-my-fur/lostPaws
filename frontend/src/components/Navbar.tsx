@@ -16,10 +16,12 @@ const Navbar = () => {
 
         {/* Nav links */}
         <div>
+          <Link to="/home" className="text-white px-4">Home</Link> 
           <Link to="/" className="text-white px-4">Login/Sign</Link> 
           <Link to="/about" className="text-white px-4">About</Link>
           <Link to="/contact" className="text-white px-4">Contact</Link>
           <Link to="/favorites" className="text-white px-4">Favorites</Link>
+          <Link to="/PetPreferences" className="text-white px-4">Preferences</Link>
         </div>
       </div>
     </nav>

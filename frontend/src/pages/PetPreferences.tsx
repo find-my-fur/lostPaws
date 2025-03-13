@@ -41,7 +41,7 @@ const PetPreferences = () => {
       body[elem] = formData.get(elem);
     }
 
-    await fetch('/api/PostPreferences', {
+    await fetch('/api/PetPreferences', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
