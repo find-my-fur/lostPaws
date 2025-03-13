@@ -47,7 +47,7 @@ export const apiController: ApiController = {
       const data = (await response.json()) as TokenResponse;
       res.locals.access_token = data.access_token;
 
-      console.log(data);
+      console.log('token:', data);
     } catch (err) {
       console.log('error:', err);
     }
@@ -55,10 +55,20 @@ export const apiController: ApiController = {
     //COLLECTS THE DATA FROM THE API
     try {
       //authorization header for fetch request
-      const header = `Authorization: Bearer ${res.locals.access_token}`;
+      console.log('testing token:', res.locals.access_token);
+      const authorizationHeader = `Bearer ${res.locals.access_token}`;
 
-      const response: Response = await fetch();
+      const fetchAnimalsUrl: string =
+        URL + `status=adoptable&gender=female&size=medium&limit=100`;
+      const response: Response = await fetch(fetchAnimalsUrl, {
+        headers: {
+          Authorization: authorizationHeader,
+          'Content-Type': 'application/json',
+        },
+      });
       const data = response.json();
+
+      console.log('data fetched:', data);
     } catch (err) {
       console.log('error:', err);
     }
