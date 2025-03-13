@@ -7,6 +7,8 @@ import PetPreferences from './pages/PetPreferences';
 import Favorite from './pages/Favorites';
 import 'tailwindcss';
 import Navbar from './components/Navbar';
+import About from './pages/About';
+
 
 function App() {
   return (
@@ -18,6 +20,7 @@ function App() {
         <Route path='/preferences' element={<Preferences />} />
         <Route path='/favorites' element={<Favorite />} />
         <Route path='/PetPreferences' element={<PetPreferences />} />
+        <Route path='/About' element={<About />} />
       </Routes>
     </Router>
   );
