@@ -90,10 +90,10 @@ const Favorites = () => {
     <div className='flex flex-col items-center mt-16 bg-gray-100 min-h-screen'>
       <div className='flex flex-col items-center mt-20'>
         <h2 className='text-3xl font-serif text-black flex items-center mb-4'>
-          Welcome
+          Favored Pets
         </h2>{' '}
         {/* Add destructured user */}
-        <p>Pets based on your preference</p>
+        <p></p>
         <div className='flex justify-center items-center min-h-screen w-full'>
           <div className='bg-transparent p-8 rounded-lg w-full max-w-6xl shadow-lg'>
             <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
