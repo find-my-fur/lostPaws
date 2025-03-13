@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../assets/LostPawsLogo.png';
+import addLogo from '../assets/icons8-plus-48.png'
+
 
 const Home = () => {
   const [petBubble, setpetBubble] = useState([]);
@@ -19,13 +21,14 @@ const Home = () => {
 
       const data = await response.json();
       const petInfo = data.animals;
-      console.log(data.animals);
+      //console.log(data.animals);
       const array: React.ReactElement[] = [];
 
       for (const elem of petInfo) {
         const { name, photos, url } = elem;
 
         array.push(
+          <div>
           <a href={url} target='_blank' rel='noopener noreferrer' className='flex flex-col items-center'>
             <img
               key={name}
@@ -35,6 +38,8 @@ const Home = () => {
             />
             <p>{name}</p>
           </a>
+          <img src={addLogo}/>
+          </div>
         );
       }
       setpetBubble(array);
