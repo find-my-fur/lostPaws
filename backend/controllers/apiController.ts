@@ -4,7 +4,7 @@ import 'dotenv/config';
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
-const URL = 'https://api.petfinder.com/v2/oauth2/token';
+const TOKEN_URL = 'https://api.petfinder.com/v2/oauth2/token';
 
 //types for the controller
 interface ApiController {
@@ -39,12 +39,13 @@ export const apiController: ApiController = {
     try {
       //response from api
       console.log(URL);
-      const response: Response = await fetch(URL, {
+      const response: Response = await fetch(TOKEN_URL, {
         method: 'POST',
         headers: headers,
         body: body,
       });
       const data = (await response.json()) as TokenResponse;
+      //saves the token received in res.locals to be used for later fetch request
       res.locals.access_token = data.access_token;
 
       console.log('token:', data);
@@ -56,6 +57,9 @@ export const apiController: ApiController = {
     try {
       //authorization header for fetch request
       console.log('testing token:', res.locals.access_token);
+      //BASE URL CALL
+      const URL = 'https://api.petfinder.com/v2/animals';
+
       const authorizationHeader = `Bearer ${res.locals.access_token}`;
 
       const fetchAnimalsUrl: string =
@@ -67,8 +71,11 @@ export const apiController: ApiController = {
         },
       });
       const data = response.json();
+      res.locals.animalsFetched = data;
+      return next();
 
-      console.log('data fetched:', data);
+      //testing delete
+      // console.log('data fetched:', data);
     } catch (err) {
       console.log('error:', err);
     }
