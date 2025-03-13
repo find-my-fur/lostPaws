@@ -1,4 +1,5 @@
 import express from 'express';
+import pool from '../modal.ts';
 
 import 'dotenv/config';
 
@@ -28,6 +29,17 @@ interface TokenResponse {
 
 export const apiController: ApiController = {
   getPets: async (req, res, next) => {
+    const results = await pool.query(
+      `SELECT * FROM userpreference WHERE user_id=18;`
+    );
+
+    const { breed, age, size, gender } = results.rows[0];
+    // console.log('breed:', breed);
+    console.log('age:', age);
+    console.log('size:', size);
+    console.log('gender:', gender);
+
+    //API REQUEST TO BE MADE BELOW
     //header for the fetch request
     const headers = {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -38,7 +50,7 @@ export const apiController: ApiController = {
     //COLLECTS THE TOKEN TO THEN USE FOR API
     try {
       //response from api
-      console.log(URL);
+      // console.log(URL);
       const response: Response = await fetch(TOKEN_URL, {
         method: 'POST',
         headers: headers,
@@ -48,7 +60,7 @@ export const apiController: ApiController = {
       //saves the token received in res.locals to be used for later fetch request
       res.locals.access_token = data.access_token;
 
-      console.log('token:', data);
+      // console.log('token:', data);
     } catch (err) {
       console.log('error:', err);
     }
@@ -63,19 +75,19 @@ export const apiController: ApiController = {
       const authorizationHeader = `Bearer ${res.locals.access_token}`;
 
       const fetchAnimalsUrl: string =
-        URL + `?status=adoptable&gender=female&size=medium&limit=100`;
+        URL +
+        `?status=adoptable&age=${age}&gender=${gender}&size=${size}&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916`;
       const response: Response = await fetch(fetchAnimalsUrl, {
         headers: {
           Authorization: authorizationHeader,
           'Content-Type': 'application/json',
         },
       });
-      const data = response.json();
+
+      const data = await response.json();
+      // console.log(data);
       res.locals.animalsFetched = data;
       return next();
-
-      //testing delete
-      // console.log('data fetched:', data);
     } catch (err) {
       console.log('error:', err);
     }
