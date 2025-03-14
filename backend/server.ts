@@ -1,7 +1,7 @@
 import express from 'express';
 import { apiRouter } from './routers/apiRouter.ts';
 import authenticateRouter from './routers/authenticateRouter.ts';
-import cors
+import cors from 'cors'
 import cookieParser from 'cookie-parser';
 const PORT: number = 3000;
 
@@ -10,6 +10,13 @@ const app = express();
 /**
  * handle parsing request body
  */
+app.use(cors({
+  origin: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true,
+  preflightContinue: false,
+}))
 app.use(cookieParser());
 app.use(express.json()); //converts data brought in into Json format
 app.use(express.urlencoded({ extended: true })); //ensures that there are header urls
