@@ -14,11 +14,11 @@ interface ApiController {
     res: express.Response,
     next: express.NextFunction
   ) => void;
-  updatePets: (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
-  ) => void;
+  // updatePets: (
+  //   req: express.Request,
+  //   res: express.Response,
+  //   next: express.NextFunction
+  // ) => void;
   favoritePets: (
     req: express.Request,
     res: express.Response,
@@ -32,13 +32,25 @@ interface TokenResponse {
   expires_in?: number;
 }
 
+//Animal interface
+interface Animal {
+  name: string;
+  photos: { small: string; medium: string; large: string }[]; // Assuming photos is an array of objects with different sizes
+  url: string;
+  id: string;
+}
+//follows for each animal the structure from above
+interface PetfinderResponse {
+  animal: Animal;
+}
+
 export const apiController: ApiController = {
   getPets: async (_req, res, next) => {
     const results = await pool.query(
       `SELECT * FROM userpreference WHERE user_id=18;`
     );
 
-    const { breed, age, size, gender } = results.rows[0];
+    const { age, size, gender } = results.rows[0];
     // console.log('breed:', breed);
     // console.log('age:', age);
     // console.log('size:', size);
@@ -106,7 +118,7 @@ export const apiController: ApiController = {
   favoritePets: async (_req, res, next) => {
     interface favoriteAnimal {
       name: string;
-      photos: string;
+      photos: { small: string; medium: string; large: string }[]; // Assuming photos is an array of objects with different sizes
       url: string;
       id: string;
     }
@@ -138,6 +150,7 @@ export const apiController: ApiController = {
         headers: headers,
         body: body,
       });
+
       const data = (await response.json()) as TokenResponse;
       //saves the token received in res.locals to be used for later fetch request
       res.locals.access_token = data.access_token;
@@ -163,7 +176,7 @@ export const apiController: ApiController = {
           },
         });
 
-        const data = await response.json();
+        const data = (await response.json()) as PetfinderResponse;
         //console.log(data.animal)
         allAnimals.push({
           name: data.animal.name,

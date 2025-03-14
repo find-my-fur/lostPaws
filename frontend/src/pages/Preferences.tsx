@@ -27,30 +27,34 @@ const Preferences = () => {
     );
   }
 
-  const submitSurvey = async (formData): void => {
-    interface Values {
-      Name: string;
-      Address: string;
-      State: string;
-      City: string;
-      Zip: number;
-      Phone: number;
-    }
+  const submitSurvey = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
 
-    const body: Values = {
-      Name: '',
-      Address: '',
-      State: '',
-      City: '',
-      Zip: 0,
-      Phone: 0,
-    };
+    // const body: Values = {
+    //   Name: '',
+    //   Address: '',
+    //   State: '',
+    //   City: '',
+    //   Zip: 0,
+    //   Phone: 0,
+    // };
 
-    //suggestion by copilot
-    //body[elem as keyof Values] = formData.get(elem) as string | number;
+    const formData = new FormData(event.currentTarget);
+
+    //declare a body object with key of type string, and value as string | number
+    const body: { [key: string]: string | number } = {};
 
     for (const elem of input) {
-      body[elem] = formData.get(elem);
+      //grab form elements
+      const value = formData.get(elem);
+
+      if (typeof value === 'string') {
+        body[elem] = value as string;
+      } else if (typeof value === 'number') {
+        body[elem] = value as number;
+      }
     }
 
     await fetch('/api/PostPreferences', {
@@ -71,7 +75,7 @@ const Preferences = () => {
       <div className='bg-white p-8 rounded-lg w-full max-w-md mshadow-lg flex flex-col items-center'>
         <div id='surveycontainer'>
           <form
-            action={submitSurvey}
+            onSubmit={submitSurvey}
             className='bg-white p-6 rounded-lg shadow-lg w-96 space-y-4 flex flex-col items-center'
           >
             {inputElement}

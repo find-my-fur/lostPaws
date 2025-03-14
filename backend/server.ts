@@ -1,6 +1,4 @@
 import express from 'express';
-import { Request, Response, NextFunction } from 'express';
-
 import { apiRouter } from './routers/apiRouter.ts';
 import authenticateRouter from './routers/authenticateRouter.ts';
 import cookieParser from 'cookie-parser';
@@ -18,7 +16,7 @@ app.use(express.urlencoded({ extended: true })); //ensures that there are header
 app.use('/api', apiRouter);
 app.use('/auth', authenticateRouter);
 
-app.use((req: express.Request, res: express.Response): void => {
+app.use((_req: express.Request, res: express.Response): void => {
   res
     .status(404)
     .json({ message: "This is not the page you're looking for..." });
@@ -28,9 +26,9 @@ app.use((req: express.Request, res: express.Response): void => {
 app.use(
   (
     err: express.ErrorRequestHandler,
-    _req: Request,
+    _req: express.Request,
     res,
-    _next: NextFunction
+    _next: express.NextFunction
   ) => {
     const defaultErr = {
       log: 'Express error handler caught unknown middleware error',

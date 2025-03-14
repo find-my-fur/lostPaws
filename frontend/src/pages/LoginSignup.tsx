@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginSignup = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Signup forms
+  const [isLogin, setIsLogin] = useState<boolean>(true); // Toggle between Login and Signup forms
 
-  const submitLogin = async (formData): Promise<void> => {
+  const submitLogin = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     // formData.preventDefault();
+    event.preventDefault();
+
+    const formData = new FormData(event.currentTarget);
 
     interface Credentials {
       email: string;
@@ -14,8 +19,8 @@ const LoginSignup = () => {
     }
 
     const body: Credentials = {
-      email: formData.get('email'),
-      password: formData.get('pass'),
+      email: formData.get('email') as string,
+      password: formData.get('pass') as string,
     };
 
     if (isLogin === true) {
