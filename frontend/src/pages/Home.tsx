@@ -7,7 +7,6 @@ const Home = () => {
   const petsPerPage = 30;
 
   useEffect(() => {
-<<<<<<< HEAD
     const GetPet = async () => {
       const response = await fetch('https://api.petfinder.com/v2/animals?status=adoptable&gender=female&size=medium&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916', {
         method: 'GET',
@@ -16,17 +15,6 @@ const Home = () => {
           'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ0MzNLTnBQbnNRUVllWHM5NzhyRWxpaVJ0dzVSSWxHSTlOS3NOM29SOUNOb2RwaDV2aiIsImp0aSI6IjI1M2FjZWJiOTE1MDIzMWMyYTljZTlkMGIyZTMyMDE5MWZkNzg0OGZhNmJlYTY5ZjRjZjFhZjVmNzAxYzg0MTM2NWNkNjgyZGNkMWFiNDk2IiwiaWF0IjoxNzQxODg4OTY0LCJuYmYiOjE3NDE4ODg5NjQsImV4cCI6MTc0MTg5MjU2NCwic3ViIjoiIiwic2NvcGVzIjpbXX0.QF99ZkV6zauQ8Q1-RT1MI9wpJENLcHJzCqVUm6OLlP2NseOHSTcIC5eeyr7gk3N5hL-muAJGBDNF5TDCldnbmxCMEvhgim7dnC9EV9Kz6UVGH_f9_H3YenMyZ2dYdCz8FNm5stB3RDo0FT0NT0iDLP3auzfuYOqBMt4KLoaUbdonSngRIXjsg8Wf-sYO-13P32Pz9jMrzLjJcJMgk9DgSfELa9YiWdONluRGa_Wm0extUEA48cTqBaU_Y_jBOfjGi7BocbBUxo90obCDQ9NUMcvk-KMpp5Fqmr7HlFyZV8cepDrJAhbxAkEZtBoZTLOa2ovYSF2glZltoOZh_zikdw'
         },
       });
-=======
-    const GetPet = async (): Promise<void> => {
-      // const response = await fetch('https://api.petfinder.com/v2/animals?status=adoptable&gender=female&size=medium&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916', {
-      //   method: 'GET',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //     'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ0MzNLTnBQbnNRUVllWHM5NzhyRWxpaVJ0dzVSSWxHSTlOS3NOM29SOUNOb2RwaDV2aiIsImp0aSI6ImU5MTQ5NDhlNTljMDczNjAwOWI0NTNhMWRiOGJkZDY4ZDQ4NzA4YWE1MWNlYmIzMWVhN2EzN2E4YmE3YmVmYTFlMjExMzQyOTlhODRmMzllIiwiaWF0IjoxNzQxODc1MTkzLCJuYmYiOjE3NDE4NzUxOTMsImV4cCI6MTc0MTg3ODc5Mywic3ViIjoiIiwic2NvcGVzIjpbXX0.HAQw5IAbj5rMI_EG-mcbgcWZwcFTc8cy1hg2Ci53vbFXTTMLinqsQ5IyykDlRY1UyGnL0FTJ30DZ2MgpTs9k_TpJ4vcvBMxjkwvCzw5KAmLZo_X4FEirmqJIaFXYRiZiexfhz8KMD8dFKK2XL0IYJ4aOU1SyObkQTkG9MXRoLx6A3Xzh4qrDf6GNbI6SyVdlxNPcsKC8Ho7QzQGI-xzIL7B0sAVpuaFXqHsbaG8VTmyHGW149zz7D641NaY-BsfFTQRkKN2vYwaJg2vmFo2bLs-2fyLhGtEI5DTzSSFzCzNvyKCkWKTaPbTwIRqFMVZrfRm4eG7wUrNNGod_Po8Lzg'
-      //   }
-      // )},
-      const response = await fetch('/api');
->>>>>>> refs/remotes/origin/frontendHomePage
 
       const data = await response.json();
       const petInfo = data.animals;
