@@ -1,7 +1,7 @@
 import express from 'express';
 import pool from '../modal.ts';
-
 import 'dotenv/config';
+
 
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
@@ -33,16 +33,13 @@ interface TokenResponse {
 }
 
 export const apiController: ApiController = {
-  getPets: async (req, res, next) => {
+  getPets: async (_req, res, next) => {
     const results = await pool.query(
       `SELECT * FROM userpreference WHERE user_id=18;`
     );
 
-    const { breed, age, size, gender } = results.rows[0];
-    // console.log('breed:', breed);
-    // console.log('age:', age);
-    // console.log('size:', size);
-    // console.log('gender:', gender);
+    // breed is removed from destructuring to stop unused var error 
+    const { age, size, gender } = results.rows[0];
 
     //API REQUEST TO BE MADE BELOW
     //header for the fetch request
@@ -100,17 +97,24 @@ export const apiController: ApiController = {
     return next();
   },
 
-  updatePets: async (req, res, next) => {
+  updatePets: async (_req, _res, next) => {
     return next();
   },
-  favoritePets: async (req, res, next) => {
-    interface favoriteAnimal {
+  favoritePets: async (_req, res, next) => {
+
+    interface animal {
       name: string;
-      photos: string;
+      photos: string[];
       url: string;
       id: string;
     }
-    let allAnimals: favoriteAnimal[] = [];
+
+    interface datajson {
+      animal: animal
+
+    }
+
+    const allAnimals: animal[] = [];
 
     const results = await pool.query(
       `SELECT * FROM favoritepet WHERE user_id=18;`
@@ -163,7 +167,8 @@ export const apiController: ApiController = {
           },
         });
 
-        const data = await response.json();
+        const data = await response.json() as datajson;
+
         //console.log(data.animal)
         allAnimals.push({
           name: data.animal.name,

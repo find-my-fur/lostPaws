@@ -8,7 +8,7 @@ const authenticateRouter = express.Router();
 authenticateRouter.post(
   '/verify',
   authenticationController.authenticate,
-  async (req: express.Request, res: express.Response) => {
+  async (_req: express.Request, res: express.Response) => {
     console.log('res.local', res.locals);
     if (res.locals.result === false) {
       res.status(200).json({ message: false });
@@ -22,7 +22,7 @@ authenticateRouter.post(
 authenticateRouter.post(
   '/createuser',
   authenticationController.signOut,
-  async (req: express.Request, res: express.Response) => {
+  async (_req: express.Request, res: express.Response) => {
     res.status(200).json('successAuth');
   }
 );

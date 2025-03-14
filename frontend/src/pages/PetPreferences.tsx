@@ -27,12 +27,9 @@ const PetPreferences = () => {
     );
   }
 
-  const submitSurvey = async (formData): void => {
+  const submitSurvey = async (formData: FormData): Promise<void> => {
     interface Values {
-      Breed: string;
-      Age: string;
-      Size: string;
-      Gender: string;
+      [key: string]: FormDataEntryValue | null;
     }
 
     const body: Values = {};

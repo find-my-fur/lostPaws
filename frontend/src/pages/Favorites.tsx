@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react';
 import removeLogo from '../assets/icons8-minus-50.png'
 
 const Favorites = () => {
-  const [petUpdate, setpetUpdate] = useState(true);
-  const [petBubble, setpetBubble] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [petUpdate, setpetUpdate] = useState<boolean>(true);
+  const [petBubble, setpetBubble] = useState<React.ReactElement[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const petsPerPage = 30;
 
   const removeFavorites = async (id: number): Promise<void> => {
@@ -65,7 +65,7 @@ const Favorites = () => {
     };
 
     GetPet();
-  }, [petUpdate]);
+  }, [petUpdate, removeFavorites]);
 
   // Pets Per Page Logic
   const handleNextPage = () => {
