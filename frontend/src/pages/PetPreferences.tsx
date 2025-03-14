@@ -27,18 +27,25 @@ const PetPreferences = () => {
     );
   }
 
-  const submitSurvey = async (formData): void => {
-    interface Values {
-      Breed: string;
-      Age: string;
-      Size: string;
-      Gender: string;
-    }
+  const submitSurvey = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    // interface Values {
+    //   Breed: string;
+    //   Age: string;
+    //   Size: string;
+    //   Gender: string;
+    // }
+    event.preventDefault();
+    //uses the FORMDATA to grab the information and pass it into formData
+    const formData = new FormData(event.currentTarget);
 
-    const body: Values = {};
+    //allows us to deine an object of varying size with keys and values of string
+    const body: Record<string, string> = {};
 
     for (const elem of input) {
-      body[elem] = formData.get(elem);
+      //each record in form data is casted to string
+      body[elem] = formData.get(elem) as string;
     }
 
     await fetch('/api/PetPreferences', {
@@ -59,7 +66,7 @@ const PetPreferences = () => {
       <div className='bg-white p-8 rounded-lg w-full max-w-md mshadow-lg flex flex-col items-center'>
         <div id='surveycontainer'>
           <form
-            action={submitSurvey}
+            onSubmit={submitSurvey}
             className='bg-white p-6 rounded-lg shadow-lg w-96 space-y-4 flex flex-col items-center'
           >
             {inputElement}

@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import logo from '../assets/LostPawsLogo.png';
+import React, { ReactElement, useEffect, useState } from 'react';
+// import logo from '../assets/LostPawsLogo.png';
 import addLogo from '../assets/icons8-plus-48.png';
 
 const Home = () => {
-  const [petBubble, setpetBubble] = useState([]);
+  const [petBubble, setpetBubble] = useState<ReactElement[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const petsPerPage = 30;
 
   const addFavorites = async (id: number): Promise<void> => {
     interface id {
-      id: number
+      id: number;
     }
 
     const body: id = {
-      id
-    }
+      id,
+    };
 
     await fetch('/api/Petfavorities', {
       method: 'POST',
@@ -22,9 +22,8 @@ const Home = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
-      
     });
-  }
+  };
 
   useEffect(() => {
     const GetPet = async () => {
@@ -53,9 +52,14 @@ const Home = () => {
               />
               <p>{name}</p>
             </a>
-            <img className='hover:bg-sky-700' src={addLogo} key={id} onClick={() => {
-              addFavorites(id)
-            }}/>
+            <img
+              className='hover:bg-sky-700'
+              src={addLogo}
+              key={id}
+              onClick={() => {
+                addFavorites(id);
+              }}
+            />
           </div>
         );
       }

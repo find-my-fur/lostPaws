@@ -1,20 +1,29 @@
-import React, {useState, useEffect} from 'react';
-import removeLogo from '../assets/icons8-minus-50.png'
+import React, { ReactElement, useState, useEffect } from 'react';
+import removeLogo from '../assets/icons8-minus-50.png';
+
+//types for petInformation
+interface PetInfo {
+  name: string;
+  photos: { small: string }[];
+  url: string;
+  id: number;
+}
+
+//types for Id below
+interface id {
+  id: number;
+}
 
 const Favorites = () => {
-  const [petUpdate, setpetUpdate] = useState(true);
-  const [petBubble, setpetBubble] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [petUpdate, setpetUpdate] = useState<boolean>(true);
+  const [petBubble, setpetBubble] = useState<ReactElement[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(0);
   const petsPerPage = 30;
 
   const removeFavorites = async (id: number): Promise<void> => {
-    interface id {
-      id: number
-    }
-
     const body: id = {
-      id
-    }
+      id,
+    };
 
     await fetch('/api/removefavorites', {
       method: 'DELETE',
@@ -24,15 +33,15 @@ const Favorites = () => {
       body: JSON.stringify(body),
     });
 
-    setpetUpdate(!petUpdate)
-  }
+    setpetUpdate(!petUpdate);
+  };
 
   useEffect(() => {
     const GetPet = async (): Promise<void> => {
       const response = await fetch('/api/getfavorites');
 
       const data = await response.json();
-      const petInfo = data;
+      const petInfo: PetInfo[] = data;
       const array: React.ReactElement[] = [];
 
       for (const elem of petInfo) {
@@ -54,9 +63,14 @@ const Favorites = () => {
               />
               <p>{name}</p>
             </a>
-            <img className='hover:bg-sky-700' src={removeLogo} key={id} onClick={() => {
-              removeFavorites(id)
-            }}/>
+            <img
+              className='hover:bg-sky-700'
+              src={removeLogo}
+              key={id}
+              onClick={() => {
+                removeFavorites(id);
+              }}
+            />
           </div>
         );
       }
@@ -123,4 +137,3 @@ const Favorites = () => {
 };
 
 export default Favorites;
-

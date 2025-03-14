@@ -7,11 +7,11 @@ interface AuthenticationController {
     res: express.Response,
     next: express.NextFunction
   ) => void;
-  signOut: (
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
-  ) => void;
+  // signOut: (
+  //   req: express.Request,
+  //   res: express.Response,
+  //   next: express.NextFunction
+  // ) => void;
 }
 
 const authenticationController: AuthenticationController = {
@@ -22,26 +22,24 @@ const authenticationController: AuthenticationController = {
       `SELECT * FROM userdata WHERE username = $1 AND password = $2`,
       [email, password]
     );
-    
-    console.log(email)
-    console.log(results.rows.length === 0);
-    console.log(results.rows)
-    if (results.rows.length === 0) {
-      res.locals = {result: false}
-    } else  {
-      res.locals = {result: true}
-    }
 
-   
+    console.log(email);
+    console.log(results.rows.length === 0);
+    console.log(results.rows);
+    if (results.rows.length === 0) {
+      res.locals = { result: false };
+    } else {
+      res.locals = { result: true };
+    }
 
     console.log('in controller');
 
     return next();
   },
 
-  signOut: async (req, res, next) => {
-    return next();
-  },
+  // signOut: async (req: express.Request, res: express.Response, next) => {
+  //   return next();
+  // },
 };
 
 export default authenticationController;
