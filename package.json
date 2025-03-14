@@ -7,7 +7,7 @@
     "dev": "vite & nodemon ./backend/server.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview && node ./backend/server.ts"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.13",
