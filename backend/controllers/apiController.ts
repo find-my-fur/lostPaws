@@ -33,7 +33,7 @@ interface TokenResponse {
 }
 
 export const apiController: ApiController = {
-  getPets: async (req, res, next) => {
+  getPets: async (_req, res, next) => {
     const results = await pool.query(
       `SELECT * FROM userpreference WHERE user_id=18;`
     );
@@ -100,17 +100,17 @@ export const apiController: ApiController = {
     return next();
   },
 
-  updatePets: async (req, res, next) => {
-    return next();
-  },
-  favoritePets: async (req, res, next) => {
+  // updatePets: async (req, res, next) => {
+  //   return next();
+  // },
+  favoritePets: async (_req, res, next) => {
     interface favoriteAnimal {
       name: string;
       photos: string;
       url: string;
       id: string;
     }
-    let allAnimals: favoriteAnimal[] = [];
+    const allAnimals: favoriteAnimal[] = [];
 
     const results = await pool.query(
       `SELECT * FROM favoritepet WHERE user_id=18;`
@@ -173,8 +173,8 @@ export const apiController: ApiController = {
         });
       }
 
-      res.locals.animalsFetched = allAnimals
-    
+      res.locals.animalsFetched = allAnimals;
+
       return next();
     } catch (err) {
       console.log(err);

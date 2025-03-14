@@ -1,4 +1,6 @@
 import express from 'express';
+import { Request, Response, NextFunction } from 'express';
+
 import { apiRouter } from './routers/apiRouter.ts';
 import authenticateRouter from './routers/authenticateRouter.ts';
 import cookieParser from 'cookie-parser';
@@ -23,16 +25,23 @@ app.use((req: express.Request, res: express.Response): void => {
   return;
 });
 
-app.use((err: express.ErrorRequestHandler, req: express.Request, res, next) => {
-  const defaultErr = {
-    log: 'Express error handler caught unknown middleware error',
-    status: 500,
-    message: { err: 'An error occurred' },
-  };
-  const errorObj = Object.assign({}, defaultErr, err);
-  console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
-});
+app.use(
+  (
+    err: express.ErrorRequestHandler,
+    _req: Request,
+    res,
+    _next: NextFunction
+  ) => {
+    const defaultErr = {
+      log: 'Express error handler caught unknown middleware error',
+      status: 500,
+      message: { err: 'An error occurred' },
+    };
+    const errorObj = Object.assign({}, defaultErr, err);
+    console.log(errorObj.log);
+    return res.status(errorObj.status).json(errorObj.message);
+  }
+);
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);

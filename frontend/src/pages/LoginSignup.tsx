@@ -33,14 +33,11 @@ const LoginSignup = () => {
         if (results.message) {
           navigate('/preferences');
         }
-      
-
       } catch (error) {
         console.log(error);
       }
     }
-    // create a tabel to input user 
-    
+    // create a tabel to input user
   };
 
   return (
@@ -52,7 +49,7 @@ const LoginSignup = () => {
 
         <form
           className='bg-white p-6 rounded-lg shadow-lg w-96 space-y-4 flex flex-col items-center'
-          action={submitLogin}
+          onSubmit={submitLogin}
         >
           {/* Email */}
           <div className='mb-4'>
