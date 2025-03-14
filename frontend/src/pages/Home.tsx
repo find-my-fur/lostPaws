@@ -28,13 +28,7 @@ const Home = () => {
 
   useEffect(() => {
     const GetPet = async () => {
-      const response = await fetch('https://api.petfinder.com/v2/animals?status=adoptable&gender=female&size=medium&limit=100&organization=ON591,LA398,IL947,KY527,VA788,IN738,MI1075,TX2369,FL1618,OK473,FL1628,FL1579,TX2309,ME162,IL916', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJ0MzNLTnBQbnNRUVllWHM5NzhyRWxpaVJ0dzVSSWxHSTlOS3NOM29SOUNOb2RwaDV2aiIsImp0aSI6IjI1M2FjZWJiOTE1MDIzMWMyYTljZTlkMGIyZTMyMDE5MWZkNzg0OGZhNmJlYTY5ZjRjZjFhZjVmNzAxYzg0MTM2NWNkNjgyZGNkMWFiNDk2IiwiaWF0IjoxNzQxODg4OTY0LCJuYmYiOjE3NDE4ODg5NjQsImV4cCI6MTc0MTg5MjU2NCwic3ViIjoiIiwic2NvcGVzIjpbXX0.QF99ZkV6zauQ8Q1-RT1MI9wpJENLcHJzCqVUm6OLlP2NseOHSTcIC5eeyr7gk3N5hL-muAJGBDNF5TDCldnbmxCMEvhgim7dnC9EV9Kz6UVGH_f9_H3YenMyZ2dYdCz8FNm5stB3RDo0FT0NT0iDLP3auzfuYOqBMt4KLoaUbdonSngRIXjsg8Wf-sYO-13P32Pz9jMrzLjJcJMgk9DgSfELa9YiWdONluRGa_Wm0extUEA48cTqBaU_Y_jBOfjGi7BocbBUxo90obCDQ9NUMcvk-KMpp5Fqmr7HlFyZV8cepDrJAhbxAkEZtBoZTLOa2ovYSF2glZltoOZh_zikdw'
-        },
-      });
+      const response = await fetch('/api');
 
       const data = await response.json();
       const petInfo = data.animals;
