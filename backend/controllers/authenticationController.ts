@@ -39,7 +39,7 @@ const authenticationController: AuthenticationController = {
     return next();
   },
 
-  signOut: async (req, res, next) => {
+  signOut: async (_req, _res, next) => {
     return next();
   },
 };

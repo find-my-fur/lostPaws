@@ -5,12 +5,12 @@ const LoginSignup = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true); // Toggle between Login and Signup forms
 
-  const submitLogin = async (formData): Promise<void> => {
+  const submitLogin = async (formData: FormData): Promise<void> => {
     // formData.preventDefault();
 
     interface Credentials {
-      email: string;
-      password: string;
+      email: FormDataEntryValue | null;
+      password: FormDataEntryValue | null;
     }
 
     const body: Credentials = {

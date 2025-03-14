@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Preferences = () => {
@@ -27,24 +27,12 @@ const Preferences = () => {
     );
   }
 
-  const submitSurvey = async (formData): void => {
+  const submitSurvey = async (formData: FormData): Promise<void> => {
     interface Values {
-      Name: string;
-      Address: string;
-      State: string;
-      City: string;
-      Zip: number;
-      Phone: number;
+      [key: string]: FormDataEntryValue | null;
     }
 
-    const body: Values = {
-      Name: '',
-      Address: '',
-      State: '',
-      City: '',
-      Zip: 0,
-      Phone: 0,
-    };
+    const body: Values = {};
 
     //suggestion by copilot
     //body[elem as keyof Values] = formData.get(elem) as string | number;

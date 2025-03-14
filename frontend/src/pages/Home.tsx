@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import logo from '../assets/LostPawsLogo.png';
 import addLogo from '../assets/icons8-plus-48.png';
 
+/* Import below uncommented beacause it's value is not being read */
+//import logo from '../assets/LostPawsLogo.png';
+
 const Home = () => {
-  const [petBubble, setpetBubble] = useState([]);
+  const [petBubble, setpetBubble] = useState<React.ReactElement[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const petsPerPage = 30;
 

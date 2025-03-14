@@ -27,12 +27,9 @@ const PetPreferences = () => {
     );
   }
 
-  const submitSurvey = async (formData): void => {
+  const submitSurvey = async (formData: FormData): Promise<void> => {
     interface Values {
-      Breed: string;
-      Age: string;
-      Size: string;
-      Gender: string;
+      [key: string]: FormDataEntryValue | null;
     }
 
     const body: Values = {};
@@ -67,7 +64,7 @@ const PetPreferences = () => {
               type='submit'
               className='w-full bg-gray-400 text-blue-900 py-2 rounded-md hover:bg-orange-400 transition duration-300'
             >
-              Search
+              Save
             </button>
           </form>
         </div>

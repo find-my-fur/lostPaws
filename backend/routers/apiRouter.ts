@@ -10,7 +10,7 @@ export const apiRouter = express.Router();
 apiRouter.get(
   '/',
   apiController.getPets,
-  async (req: express.Request, res: express.Response) => {
+  async (_req: express.Request, res: express.Response) => {
     res.status(200).json(res.locals.animalsFetched);
   }
 );
@@ -19,7 +19,7 @@ apiRouter.get(
 apiRouter.post(
   '/',
   apiController.updatePets,
-  async (req: Request, res: Response) => {
+  async (_req: express.Request, res: express.Response) => {
     res.status(200).json('success');
   }
 );
@@ -28,7 +28,7 @@ apiRouter.post(
 apiRouter.post(
   '/PostPreferences',
   apiController.updatePets, // have a user controller
-  async (req: Request, res: Response) => {
+  async (req: express.Request, res: express.Response) => {
     console.log('in apiRouter', req.body);
     const { Address, Name, State, City, Zip, Phone } = req.body;
 
@@ -63,7 +63,7 @@ apiRouter.post(
     const values: (string | number)[] = [userId, Breed, Age, Size, Gender];
     //console.log('the values:', values);
 
-    let result = await pool.query(
+    const result = await pool.query(
       'SELECT * FROM userpreference WHERE user_id = $1',
       [userId]
     );
@@ -104,7 +104,7 @@ apiRouter.post(
 );
 
 apiRouter.get(
-  '/getfavorites',apiController.favoritePets, async (req: express.Request, res: express.Response) => {
+  '/getfavorites',apiController.favoritePets, async (_req: express.Request, res: express.Response) => {
     res.status(200).json(res.locals.animalsFetched);
   }
 );
@@ -112,7 +112,6 @@ apiRouter.get(
 // remove from favorites
 apiRouter.delete(
   '/removefavorites', async (req: express.Request, res: express.Response) => {
-    const userId: number = 18;
     const { id } = req.body;
 
     await pool.query(

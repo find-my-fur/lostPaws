@@ -16,14 +16,14 @@ app.use(express.urlencoded({ extended: true })); //ensures that there are header
 app.use('/api', apiRouter);
 app.use('/auth', authenticateRouter);
 
-app.use((req: express.Request, res: express.Response): void => {
+app.use((_req: express.Request, res: express.Response): void => {
   res
     .status(404)
     .json({ message: "This is not the page you're looking for..." });
   return;
 });
 
-app.use((err: express.ErrorRequestHandler, req: express.Request, res, next) => {
+app.use((err: express.ErrorRequestHandler, _req: express.Request, res: express.Response, _next: express.NextFunction): void => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 500,
@@ -31,7 +31,8 @@ app.use((err: express.ErrorRequestHandler, req: express.Request, res, next) => {
   };
   const errorObj = Object.assign({}, defaultErr, err);
   console.log(errorObj.log);
-  return res.status(errorObj.status).json(errorObj.message);
+  res.status(errorObj.status).json(errorObj.message);
+  return 
 });
 
 app.listen(PORT, () => {

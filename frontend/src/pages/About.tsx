@@ -1,5 +1,3 @@
-import React from 'react';
-
 import GitHubProfiles from '../components/GitHubProfiles.tsx';
 
 const AboutMe = () => {
