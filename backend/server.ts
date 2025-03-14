@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'path';
+// import path from 'path';
 import { apiRouter } from './routers/apiRouter.ts';
 import authenticateRouter from './routers/authenticateRouter.ts';
 import cookieParser from 'cookie-parser';
