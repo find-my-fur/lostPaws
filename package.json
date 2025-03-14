@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite & nodemon ./backend/server.ts",
-    "build": "tsx ./backend/server.ts && tsc -b && vite build",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview & tsx ./backend/server.ts",
+    "preview": "vite preview && tsx ./backend/server.ts",
     "server": "tsx ./backend/server.ts"
   },
   "dependencies": {
