@@ -1,6 +1,7 @@
 import express from 'express';
 import { apiRouter } from './routers/apiRouter.ts';
 import authenticateRouter from './routers/authenticateRouter.ts';
+import cors
 import cookieParser from 'cookie-parser';
 const PORT: number = 3000;
 
