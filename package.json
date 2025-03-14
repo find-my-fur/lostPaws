@@ -7,7 +7,7 @@
     "dev": "vite & nodemon ./backend/server.ts",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview & node ./backend/server.ts"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.13",
@@ -29,9 +29,10 @@
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",
     "ts-node": "^10.9.2",
-    "express": "^4.21.2"
+    
   },
   "devDependencies": {
+    "express": "^4.21.2",
     "@aws-amplify/backend": "^1.14.3",
     "@aws-amplify/backend-cli": "^1.5.0",
     "@eslint/js": "^9.21.0",
