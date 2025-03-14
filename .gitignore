@@ -27,3 +27,8 @@ package-lock.json
 *.sln
 *.sw?
 .vercel
+
+# amplify
+.amplify
+amplify_outputs*
+amplifyconfiguration*

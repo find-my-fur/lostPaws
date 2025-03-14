@@ -15,6 +15,7 @@
     "@types/passport": "^1.0.17",
     "@types/passport-local": "^1.0.38",
     "@types/pg": "^8.11.11",
+    "aws-amplify": "^6.13.5",
     "cookie-parser": "^1.4.7",
     "crypto-js": "^4.2.0",
     "dotenv": "^16.4.7",
@@ -28,6 +29,8 @@
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.14.3",
+    "@aws-amplify/backend-cli": "^1.5.0",
     "@eslint/js": "^9.21.0",
     "@tailwindcss/vite": "^4.0.13",
     "@types/express": "^5.0.0",
@@ -36,6 +39,10 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.21",
+    "aws-cdk": "^2.1003.0",
+    "aws-cdk-lib": "^2.180.0",
+    "constructs": "^10.4.2",
+    "esbuild": "^0.25.1",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
@@ -46,6 +53,7 @@
     "npm": "^11.2.0",
     "postcss": "^8.5.3",
     "tailwindcss": "^4.0.13",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.24.1"
   }
