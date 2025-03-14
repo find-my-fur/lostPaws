@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite & nodemon ./backend/server.ts",
-    "build": "tsc -b && vite build && tsx ./backend/server",
+    "build": "tsx ./backend/server.ts && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview & tsx ./backend/server.ts",
     "server": "tsx ./backend/server.ts"
